@@ -1,10 +1,13 @@
-const vocals = ['a','o','u','y', 'i', 'e', 'å', 'ä', 'ö',' ', '!', '&'];
+const vocals = ['a','o','u','y', 'i', 'e', 'å', 'ä', 'ö',' ', '!', '&', '/', '$', '#'];
+
+function returnLowerCase(letter) {
+    return letter.toLowerCase();
+}
 
 function encrypt(string) {
     let newString = '';
-
     for(const letter of string) {
-        if(!(vocals.includes(letter))) {
+        if(!(vocals.includes(returnLowerCase(letter))) && isNaN(letter)) {
             newString+=`${letter}o${letter}`;
         } else {
             newString += letter;
@@ -16,9 +19,9 @@ function encrypt(string) {
 function decrypt(string) {
 
     let newString = '';
-    for(let index = 0; index < string.length-1; index++){
+    for(let index = 0; index < string.length; index++){
         newString += string[index];
-        if(!(vocals.includes(string[index]))) {
+        if(!(vocals.includes(returnLowerCase(string[index]))) && isNaN(string[index])) {
             index += 2;
         }
     }
